@@ -1,0 +1,21 @@
+function void main() {
+    // initialize nodes
+    node a = {1, 1};
+    node b = {1, 2};
+    node c = {2, 1};
+    node d = {2, 2};
+
+    // initialize graphs
+    graph g1 = {{a, b}, {b, c}, {c, d}};
+    graph g2 = {g1.get(1), g1.get(2), {d, a}};
+
+    // print graphs
+    print("Graph 1: " + g1);
+    print("Graph 2: " + g2);
+
+    // find graph intersection
+    graph result = g1 * g2;
+
+    // print graph intersection
+    print("Graphs intersection: " + result);
+}

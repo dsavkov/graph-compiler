@@ -1,0 +1,41 @@
+function int getNodesCount(graph g) {
+    int result = 0;
+    for (node n : g) result++;
+    return result;
+}
+
+function int getArcsCount(graph g) {
+    int result = 0;
+    for (arc a : g) {
+        result = result + 1;
+    }
+    return result;
+}
+
+function void main() {
+    // initialize nodes
+    node a = {1, 1};
+    node b = {1, 2};
+    node c = {2, 1};
+    node d = {2, 2};
+
+    // initialize arcs
+    arc ab = a + b;
+    arc bc = b + c;
+    arc cd = c + d;
+    arc da = d + a;
+
+    // build graph
+    graph g = {};
+    print("Initial graph: " + g);
+    print("Building graph...");
+    g = {a, b, c, d, ab, bc, cd, da};
+    print("Graph built: " + g);
+
+    // print results
+    print("Nodes count: " + getNodesCount(g));
+    print("Arcs count: " + getArcsCount(g));
+    if (getNodesCount(g) == getArcsCount(g)) {
+        print("Arcs count equals nodes count");
+    }
+}
