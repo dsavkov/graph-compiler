@@ -7,8 +7,8 @@ LINE : '"'(.)+?'"';
 // 2. Keywords
 MAIN : 'main';
 VOID : 'void';
-FUNCTION : 'function';
 IF : 'if';
+THEN : 'then';
 ELSE : 'else';
 FOR : 'for';
 WHILE : 'while';
@@ -29,7 +29,7 @@ primitiveType
     ;
 
 // 2.2 Built-in functions
-PRINT : 'print';
+PRINTLN : 'println';
 SIZE : 'size';
 GET : 'get';
 
@@ -58,7 +58,7 @@ ADD : '+';
 SUB : '-';
 MULTIPLY : '*';
 DIVIDE : '/';
-COLON : ':';
+IN : 'in';
 
 comparisonOperator
     :   LESS_OR_EQUAL
@@ -82,31 +82,31 @@ logicalOperator
     ;
 
 // 5. Statements and blocks
-compilationUnit
-    :   functionDeclaration* mainFunctionDeclaration EOF
+entryPoint
+    :   methodDeclaration* mainMethodDeclaration EOF
     ;
 
-mainFunctionDeclaration
-    :   FUNCTION VOID MAIN OPEN_BRACKET CLOSE_BRACKET functionBody
+mainMethodDeclaration
+    :   VOID MAIN OPEN_BRACKET CLOSE_BRACKET methodBody
     ;
 
-functionDeclaration
-    :   FUNCTION (primitiveType | VOID) Identifier functionParameters functionBody
+methodDeclaration
+    :   (primitiveType | VOID) Identifier methodParameters methodBody
     ;
 
-functionParameters
-    :   OPEN_BRACKET functionParameterDecls? CLOSE_BRACKET
+methodParameters
+    :   OPEN_BRACKET methodParameterDecls? CLOSE_BRACKET
     ;
 
-functionParameterDecls
-    :   primitiveType formalParameterDeclsRest
+methodParameterDecls
+    :   primitiveType methodParameterDeclsRest
     ;
 
-formalParameterDeclsRest
-    :   Identifier (COMMA functionParameterDecls)?
+methodParameterDeclsRest
+    :   Identifier (COMMA methodParameterDecls)?
     ;
 
-functionBody
+methodBody
     :   block
     ;
 
@@ -126,7 +126,7 @@ statement
     |   whileStatement
     |   untilStatement
     |   returnStatement
-    |   functionCallStatement
+    |   methodCallStatement
     |   expressionStatement
     ;
 
@@ -134,8 +134,8 @@ expressionStatement
     :   expression SEMIOCOLON
     ;
 
-functionCallStatement
-    :   functionCallExpression SEMIOCOLON
+methodCallStatement
+    :   methodCallExpression SEMIOCOLON
     ;
 
 returnStatement
@@ -143,7 +143,7 @@ returnStatement
     ;
 
 ifStatement
-    :   IF parExpression statement (ELSE statement)?
+    :   IF parExpression THEN statement (ELSE statement)?
     ;
 
 whileStatement
@@ -159,7 +159,7 @@ forStatement
     ;
 
 forControl
-    :   primitiveType Identifier COLON expression
+    :   primitiveType Identifier IN expression
     ;
 
 localVariableDeclarationStatement
@@ -214,7 +214,7 @@ unaryExpression
 
 unaryNotPlusMinusExpression
     :   castExpression
-    |   functionCallExpression
+    |   methodCallExpression
     |   primitiveTypeExpression
     |   Identifier (INCREMENT | DECREMENT)?
     |   NUMBER (INCREMENT | DECREMENT)?
@@ -238,11 +238,11 @@ castExpression
     :   OPEN_BRACKET primitiveType CLOSE_BRACKET unaryExpression
     ;
 
-functionCallExpression
-    :   Identifier functionCallArguments
+methodCallExpression
+    :   Identifier methodCallArguments
     |   getExpression
     |   sizeExpression
-    |   printExpression
+    |   printlnExpression
     ;
 
 getExpression
@@ -253,11 +253,11 @@ sizeExpression
     :   Identifier DOT SIZE OPEN_BRACKET CLOSE_BRACKET
     ;
 
-printExpression
-    :   PRINT OPEN_BRACKET expression CLOSE_BRACKET
+printlnExpression
+    :   PRINTLN OPEN_BRACKET expression CLOSE_BRACKET
     ;
 
-functionCallArguments
+methodCallArguments
     :   OPEN_BRACKET expression? (COMMA expression)* CLOSE_BRACKET
     ;
 

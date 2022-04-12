@@ -1,18 +1,18 @@
-function int getNodesCount(graph g) {
+int getNodesCount(graph g) {
     int result = 0;
-    for (node n : g) result++;
+    for (node n in g) result++;
     return result;
 }
 
-function int getArcsCount(graph g) {
+int getArcsCount(graph g) {
     int result = 0;
-    for (arc a : g) {
+    for (arc a in g) {
         result = result + 1;
     }
     return result;
 }
 
-function void main() {
+void main() {
     // initialize nodes
     node a = node(1, 1);
     node b = node(1, 2);
@@ -26,16 +26,16 @@ function void main() {
     arc da = arc(d, a);
 
     // build graph
-    graph g = graph();
-    print("Initial graph: " + g);
-    print("Building graph...");
-    g = graph(a, b, c, d, ab, bc, cd, da);
-    print("Graph built: " + g);
+    graph g = {};
+    println("Initial graph: " + g);
+    println("Building graph...");
+    g = {a, b, c, d, ab, bc, cd, da};
+    println("Graph built: " + g);
 
     // print results
-    print("Nodes count: " + getNodesCount(g));
-    print("Arcs count: " + getArcsCount(g));
-    if (getNodesCount(g) == getArcsCount(g)) {
-        print("Arcs count equals nodes count");
+    println("Nodes count: " + getNodesCount(g));
+    println("Arcs count: " + getArcsCount(g));
+    if (getNodesCount(g) == getArcsCount(g)) then {
+        println("Arcs count equals nodes count");
     }
 }

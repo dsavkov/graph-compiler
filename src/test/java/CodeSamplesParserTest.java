@@ -38,7 +38,7 @@ public class CodeSamplesParserTest {
 		var inputStream = new ANTLRFileStream(EXAMPLE_FILES.get(0));
 		var lexer = new GraphLexer(inputStream);
 		var parser = new GraphParser(new CommonTokenStream(lexer));
-		var tree = parser.compilationUnit();
+		var tree = parser.entryPoint();
 		var visitor = new GraphCustomVisitor();
 		System.out.println(visitor.visit(tree));
 	}
@@ -48,7 +48,7 @@ public class CodeSamplesParserTest {
 		var inputStream = new ANTLRFileStream(EXAMPLE_FILES.get(1));
 		var lexer = new GraphLexer(inputStream);
 		var parser = new GraphParser(new CommonTokenStream(lexer));
-		var tree = parser.compilationUnit();
+		var tree = parser.entryPoint();
 		var visitor = new GraphCustomVisitor();
 		System.out.println(visitor.visit(tree));
 	}
@@ -58,7 +58,7 @@ public class CodeSamplesParserTest {
 		var inputStream = new ANTLRFileStream(EXAMPLE_FILES.get(2));
 		var lexer = new GraphLexer(inputStream);
 		var parser = new GraphParser(new CommonTokenStream(lexer));
-		var tree = parser.compilationUnit();
+		var tree = parser.entryPoint();
 		var visitor = new GraphCustomVisitor();
 		System.out.println(visitor.visit(tree));
 	}

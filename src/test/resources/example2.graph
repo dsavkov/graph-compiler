@@ -1,4 +1,4 @@
-function void main() {
+void main() {
     // initialize nodes
     node a = node(1, 1);
     node b = node(1, 2);
@@ -9,13 +9,13 @@ function void main() {
     graph g1 = graph(arc(a, b), arc(b, c), arc(c, d));
     graph g2 = graph(g1.get(1), g1.get(2), arc(d, a));
 
-    // print graphs
-    print("Graph 1: " + g1);
-    print("Graph 2: " + g2);
+    // println graphs
+    println("Graph 1: " + g1);
+    println("Graph 2: " + g2);
 
     // find graph intersection
     graph result = g1 * g2;
 
-    // print graph intersection
-    print("Graphs intersection: " + result);
+    // println graph intersection
+    println("Graphs intersection: " + result);
 }
