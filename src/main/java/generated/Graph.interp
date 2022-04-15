@@ -130,8 +130,8 @@ mathExpression
 unaryExpression
 unaryNotPlusMinusExpression
 primitiveTypeExpression
-defaultPrivitiveTypeExpression
-multiPrivitiveTypeExpression
+defaultPrimitiveTypeExpression
+multiPrimitiveTypeExpression
 castExpression
 functionCallExpression
 getExpression

@@ -221,17 +221,17 @@ public interface GraphVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPrimitiveTypeExpression(GraphParser.PrimitiveTypeExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#defaultPrivitiveTypeExpression}.
+	 * Visit a parse tree produced by {@link GraphParser#defaultPrimitiveTypeExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDefaultPrivitiveTypeExpression(GraphParser.DefaultPrivitiveTypeExpressionContext ctx);
+	T visitDefaultPrimitiveTypeExpression(GraphParser.DefaultPrimitiveTypeExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#multiPrivitiveTypeExpression}.
+	 * Visit a parse tree produced by {@link GraphParser#multiPrimitiveTypeExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMultiPrivitiveTypeExpression(GraphParser.MultiPrivitiveTypeExpressionContext ctx);
+	T visitMultiPrimitiveTypeExpression(GraphParser.MultiPrimitiveTypeExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GraphParser#castExpression}.
 	 * @param ctx the parse tree

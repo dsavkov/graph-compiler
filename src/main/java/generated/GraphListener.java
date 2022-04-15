@@ -358,25 +358,25 @@ public interface GraphListener extends ParseTreeListener {
 	 */
 	void exitPrimitiveTypeExpression(GraphParser.PrimitiveTypeExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#defaultPrivitiveTypeExpression}.
+	 * Enter a parse tree produced by {@link GraphParser#defaultPrimitiveTypeExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterDefaultPrivitiveTypeExpression(GraphParser.DefaultPrivitiveTypeExpressionContext ctx);
+	void enterDefaultPrimitiveTypeExpression(GraphParser.DefaultPrimitiveTypeExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#defaultPrivitiveTypeExpression}.
+	 * Exit a parse tree produced by {@link GraphParser#defaultPrimitiveTypeExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitDefaultPrivitiveTypeExpression(GraphParser.DefaultPrivitiveTypeExpressionContext ctx);
+	void exitDefaultPrimitiveTypeExpression(GraphParser.DefaultPrimitiveTypeExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#multiPrivitiveTypeExpression}.
+	 * Enter a parse tree produced by {@link GraphParser#multiPrimitiveTypeExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterMultiPrivitiveTypeExpression(GraphParser.MultiPrivitiveTypeExpressionContext ctx);
+	void enterMultiPrimitiveTypeExpression(GraphParser.MultiPrimitiveTypeExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#multiPrivitiveTypeExpression}.
+	 * Exit a parse tree produced by {@link GraphParser#multiPrimitiveTypeExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitMultiPrivitiveTypeExpression(GraphParser.MultiPrivitiveTypeExpressionContext ctx);
+	void exitMultiPrimitiveTypeExpression(GraphParser.MultiPrimitiveTypeExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GraphParser#castExpression}.
 	 * @param ctx the parse tree

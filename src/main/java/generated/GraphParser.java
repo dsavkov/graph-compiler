@@ -37,7 +37,7 @@ public class GraphParser extends Parser {
 		RULE_parExpression = 27, RULE_expression = 28, RULE_logicalExpression = 29, 
 		RULE_comparisonExpression = 30, RULE_mathExpression = 31, RULE_unaryExpression = 32, 
 		RULE_unaryNotPlusMinusExpression = 33, RULE_primitiveTypeExpression = 34, 
-		RULE_defaultPrivitiveTypeExpression = 35, RULE_multiPrivitiveTypeExpression = 36, 
+		RULE_defaultPrimitiveTypeExpression = 35, RULE_multiPrimitiveTypeExpression = 36, 
 		RULE_castExpression = 37, RULE_functionCallExpression = 38, RULE_getExpression = 39, 
 		RULE_sizeExpression = 40, RULE_printExpression = 41, RULE_functionCallArguments = 42;
 	private static String[] makeRuleNames() {
@@ -51,7 +51,7 @@ public class GraphParser extends Parser {
 			"localVariableDeclaration", "variableDeclarators", "variableDeclarator", 
 			"variableInitializer", "parExpression", "expression", "logicalExpression", 
 			"comparisonExpression", "mathExpression", "unaryExpression", "unaryNotPlusMinusExpression", 
-			"primitiveTypeExpression", "defaultPrivitiveTypeExpression", "multiPrivitiveTypeExpression", 
+			"primitiveTypeExpression", "defaultPrimitiveTypeExpression", "multiPrimitiveTypeExpression", 
 			"castExpression", "functionCallExpression", "getExpression", "sizeExpression", 
 			"printExpression", "functionCallArguments"
 		};
@@ -2296,11 +2296,11 @@ public class GraphParser extends Parser {
 	}
 
 	public static class PrimitiveTypeExpressionContext extends ParserRuleContext {
-		public DefaultPrivitiveTypeExpressionContext defaultPrivitiveTypeExpression() {
-			return getRuleContext(DefaultPrivitiveTypeExpressionContext.class,0);
+		public DefaultPrimitiveTypeExpressionContext defaultPrimitiveTypeExpression() {
+			return getRuleContext(DefaultPrimitiveTypeExpressionContext.class,0);
 		}
-		public MultiPrivitiveTypeExpressionContext multiPrivitiveTypeExpression() {
-			return getRuleContext(MultiPrivitiveTypeExpressionContext.class,0);
+		public MultiPrimitiveTypeExpressionContext multiPrimitiveTypeExpression() {
+			return getRuleContext(MultiPrimitiveTypeExpressionContext.class,0);
 		}
 		public PrimitiveTypeExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -2332,14 +2332,14 @@ public class GraphParser extends Parser {
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(278);
-				defaultPrivitiveTypeExpression();
+				defaultPrimitiveTypeExpression();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(279);
-				multiPrivitiveTypeExpression();
+				multiPrimitiveTypeExpression();
 				}
 				break;
 			}
@@ -2355,7 +2355,7 @@ public class GraphParser extends Parser {
 		return _localctx;
 	}
 
-	public static class DefaultPrivitiveTypeExpressionContext extends ParserRuleContext {
+	public static class DefaultPrimitiveTypeExpressionContext extends ParserRuleContext {
 		public TerminalNode OPEN_CURLY_BRACKET() { return getToken(GraphParser.OPEN_CURLY_BRACKET, 0); }
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
@@ -2365,28 +2365,28 @@ public class GraphParser extends Parser {
 		}
 		public TerminalNode COMMA() { return getToken(GraphParser.COMMA, 0); }
 		public TerminalNode CLOSE_CURLY_BRACKET() { return getToken(GraphParser.CLOSE_CURLY_BRACKET, 0); }
-		public DefaultPrivitiveTypeExpressionContext(ParserRuleContext parent, int invokingState) {
+		public DefaultPrimitiveTypeExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_defaultPrivitiveTypeExpression; }
+		@Override public int getRuleIndex() { return RULE_defaultPrimitiveTypeExpression; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GraphListener ) ((GraphListener)listener).enterDefaultPrivitiveTypeExpression(this);
+			if ( listener instanceof GraphListener ) ((GraphListener)listener).enterDefaultPrimitiveTypeExpression(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GraphListener ) ((GraphListener)listener).exitDefaultPrivitiveTypeExpression(this);
+			if ( listener instanceof GraphListener ) ((GraphListener)listener).exitDefaultPrimitiveTypeExpression(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GraphVisitor ) return ((GraphVisitor<? extends T>)visitor).visitDefaultPrivitiveTypeExpression(this);
+			if ( visitor instanceof GraphVisitor ) return ((GraphVisitor<? extends T>)visitor).visitDefaultPrimitiveTypeExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final DefaultPrivitiveTypeExpressionContext defaultPrivitiveTypeExpression() throws RecognitionException {
-		DefaultPrivitiveTypeExpressionContext _localctx = new DefaultPrivitiveTypeExpressionContext(_ctx, getState());
-		enterRule(_localctx, 70, RULE_defaultPrivitiveTypeExpression);
+	public final DefaultPrimitiveTypeExpressionContext defaultPrimitiveTypeExpression() throws RecognitionException {
+		DefaultPrimitiveTypeExpressionContext _localctx = new DefaultPrimitiveTypeExpressionContext(_ctx, getState());
+		enterRule(_localctx, 70, RULE_defaultPrimitiveTypeExpression);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -2413,7 +2413,7 @@ public class GraphParser extends Parser {
 		return _localctx;
 	}
 
-	public static class MultiPrivitiveTypeExpressionContext extends ParserRuleContext {
+	public static class MultiPrimitiveTypeExpressionContext extends ParserRuleContext {
 		public TerminalNode OPEN_CURLY_BRACKET() { return getToken(GraphParser.OPEN_CURLY_BRACKET, 0); }
 		public TerminalNode CLOSE_CURLY_BRACKET() { return getToken(GraphParser.CLOSE_CURLY_BRACKET, 0); }
 		public List<ExpressionContext> expression() {
@@ -2426,28 +2426,28 @@ public class GraphParser extends Parser {
 		public TerminalNode COMMA(int i) {
 			return getToken(GraphParser.COMMA, i);
 		}
-		public MultiPrivitiveTypeExpressionContext(ParserRuleContext parent, int invokingState) {
+		public MultiPrimitiveTypeExpressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_multiPrivitiveTypeExpression; }
+		@Override public int getRuleIndex() { return RULE_multiPrimitiveTypeExpression; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof GraphListener ) ((GraphListener)listener).enterMultiPrivitiveTypeExpression(this);
+			if ( listener instanceof GraphListener ) ((GraphListener)listener).enterMultiPrimitiveTypeExpression(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof GraphListener ) ((GraphListener)listener).exitMultiPrivitiveTypeExpression(this);
+			if ( listener instanceof GraphListener ) ((GraphListener)listener).exitMultiPrimitiveTypeExpression(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof GraphVisitor ) return ((GraphVisitor<? extends T>)visitor).visitMultiPrivitiveTypeExpression(this);
+			if ( visitor instanceof GraphVisitor ) return ((GraphVisitor<? extends T>)visitor).visitMultiPrimitiveTypeExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final MultiPrivitiveTypeExpressionContext multiPrivitiveTypeExpression() throws RecognitionException {
-		MultiPrivitiveTypeExpressionContext _localctx = new MultiPrivitiveTypeExpressionContext(_ctx, getState());
-		enterRule(_localctx, 72, RULE_multiPrivitiveTypeExpression);
+	public final MultiPrimitiveTypeExpressionContext multiPrimitiveTypeExpression() throws RecognitionException {
+		MultiPrimitiveTypeExpressionContext _localctx = new MultiPrimitiveTypeExpressionContext(_ctx, getState());
+		enterRule(_localctx, 72, RULE_multiPrimitiveTypeExpression);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);

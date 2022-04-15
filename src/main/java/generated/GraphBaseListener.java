@@ -436,25 +436,25 @@ public class GraphBaseListener implements GraphListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDefaultPrivitiveTypeExpression(GraphParser.DefaultPrivitiveTypeExpressionContext ctx) { }
+	@Override public void enterDefaultPrimitiveTypeExpression(GraphParser.DefaultPrimitiveTypeExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDefaultPrivitiveTypeExpression(GraphParser.DefaultPrivitiveTypeExpressionContext ctx) { }
+	@Override public void exitDefaultPrimitiveTypeExpression(GraphParser.DefaultPrimitiveTypeExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMultiPrivitiveTypeExpression(GraphParser.MultiPrivitiveTypeExpressionContext ctx) { }
+	@Override public void enterMultiPrimitiveTypeExpression(GraphParser.MultiPrimitiveTypeExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMultiPrivitiveTypeExpression(GraphParser.MultiPrivitiveTypeExpressionContext ctx) { }
+	@Override public void exitMultiPrimitiveTypeExpression(GraphParser.MultiPrimitiveTypeExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -262,14 +262,14 @@ public class GraphBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDefaultPrivitiveTypeExpression(GraphParser.DefaultPrivitiveTypeExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDefaultPrimitiveTypeExpression(GraphParser.DefaultPrimitiveTypeExpressionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMultiPrivitiveTypeExpression(GraphParser.MultiPrivitiveTypeExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMultiPrimitiveTypeExpression(GraphParser.MultiPrimitiveTypeExpressionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

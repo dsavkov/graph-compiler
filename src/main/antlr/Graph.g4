@@ -222,15 +222,15 @@ unaryNotPlusMinusExpression
     ;
 
 primitiveTypeExpression
-    :   defaultPrivitiveTypeExpression
-    |   multiPrivitiveTypeExpression
+    :   defaultPrimitiveTypeExpression
+    |   multiPrimitiveTypeExpression
     ;
 
-defaultPrivitiveTypeExpression
+defaultPrimitiveTypeExpression
     :   OPEN_CURLY_BRACKET expression COMMA expression CLOSE_CURLY_BRACKET
     ;
 
-multiPrivitiveTypeExpression
+multiPrimitiveTypeExpression
     :   OPEN_CURLY_BRACKET expression? (COMMA expression)* CLOSE_CURLY_BRACKET
     ;
 
