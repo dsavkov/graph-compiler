@@ -3,6 +3,7 @@ import generated.GraphLexer;
 import generated.GraphParser;
 import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -27,6 +28,11 @@ public class CodeSamplesParserTest {
 		}
 	}
 
+	@AfterEach
+	void afterEach() {
+		System.out.println();
+	}
+
 	@Test
 	void testSample1() throws IOException {
 		var inputStream = new ANTLRFileStream(EXAMPLE_FILES.get(0));
@@ -34,7 +40,7 @@ public class CodeSamplesParserTest {
 		var parser = new GraphParser(new CommonTokenStream(lexer));
 		var tree = parser.compilationUnit();
 		var visitor = new GraphCustomVisitor();
-		var output = visitor.visit(tree);
+		System.out.println(visitor.visit(tree));
 	}
 
 	@Test
@@ -44,7 +50,7 @@ public class CodeSamplesParserTest {
 		var parser = new GraphParser(new CommonTokenStream(lexer));
 		var tree = parser.compilationUnit();
 		var visitor = new GraphCustomVisitor();
-		var output = visitor.visit(tree);
+		System.out.println(visitor.visit(tree));
 	}
 
 	@Test
@@ -54,6 +60,6 @@ public class CodeSamplesParserTest {
 		var parser = new GraphParser(new CommonTokenStream(lexer));
 		var tree = parser.compilationUnit();
 		var visitor = new GraphCustomVisitor();
-		var output = visitor.visit(tree);
+		System.out.println(visitor.visit(tree));
 	}
 }
