@@ -48,75 +48,75 @@ public interface GraphListener extends ParseTreeListener {
 	 */
 	void exitLogicalOperator(GraphParser.LogicalOperatorContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#compilationUnit}.
+	 * Enter a parse tree produced by {@link GraphParser#entryPoint}.
 	 * @param ctx the parse tree
 	 */
-	void enterCompilationUnit(GraphParser.CompilationUnitContext ctx);
+	void enterEntryPoint(GraphParser.EntryPointContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#compilationUnit}.
+	 * Exit a parse tree produced by {@link GraphParser#entryPoint}.
 	 * @param ctx the parse tree
 	 */
-	void exitCompilationUnit(GraphParser.CompilationUnitContext ctx);
+	void exitEntryPoint(GraphParser.EntryPointContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#mainFunctionDeclaration}.
+	 * Enter a parse tree produced by {@link GraphParser#mainMethodDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterMainFunctionDeclaration(GraphParser.MainFunctionDeclarationContext ctx);
+	void enterMainMethodDeclaration(GraphParser.MainMethodDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#mainFunctionDeclaration}.
+	 * Exit a parse tree produced by {@link GraphParser#mainMethodDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitMainFunctionDeclaration(GraphParser.MainFunctionDeclarationContext ctx);
+	void exitMainMethodDeclaration(GraphParser.MainMethodDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#functionDeclaration}.
+	 * Enter a parse tree produced by {@link GraphParser#methodDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunctionDeclaration(GraphParser.FunctionDeclarationContext ctx);
+	void enterMethodDeclaration(GraphParser.MethodDeclarationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#functionDeclaration}.
+	 * Exit a parse tree produced by {@link GraphParser#methodDeclaration}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunctionDeclaration(GraphParser.FunctionDeclarationContext ctx);
+	void exitMethodDeclaration(GraphParser.MethodDeclarationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#functionParameters}.
+	 * Enter a parse tree produced by {@link GraphParser#methodParameters}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunctionParameters(GraphParser.FunctionParametersContext ctx);
+	void enterMethodParameters(GraphParser.MethodParametersContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#functionParameters}.
+	 * Exit a parse tree produced by {@link GraphParser#methodParameters}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunctionParameters(GraphParser.FunctionParametersContext ctx);
+	void exitMethodParameters(GraphParser.MethodParametersContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#functionParameterDecls}.
+	 * Enter a parse tree produced by {@link GraphParser#methodParameterDecls}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunctionParameterDecls(GraphParser.FunctionParameterDeclsContext ctx);
+	void enterMethodParameterDecls(GraphParser.MethodParameterDeclsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#functionParameterDecls}.
+	 * Exit a parse tree produced by {@link GraphParser#methodParameterDecls}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunctionParameterDecls(GraphParser.FunctionParameterDeclsContext ctx);
+	void exitMethodParameterDecls(GraphParser.MethodParameterDeclsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#formalParameterDeclsRest}.
+	 * Enter a parse tree produced by {@link GraphParser#methodParameterDeclsRest}.
 	 * @param ctx the parse tree
 	 */
-	void enterFormalParameterDeclsRest(GraphParser.FormalParameterDeclsRestContext ctx);
+	void enterMethodParameterDeclsRest(GraphParser.MethodParameterDeclsRestContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#formalParameterDeclsRest}.
+	 * Exit a parse tree produced by {@link GraphParser#methodParameterDeclsRest}.
 	 * @param ctx the parse tree
 	 */
-	void exitFormalParameterDeclsRest(GraphParser.FormalParameterDeclsRestContext ctx);
+	void exitMethodParameterDeclsRest(GraphParser.MethodParameterDeclsRestContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#functionBody}.
+	 * Enter a parse tree produced by {@link GraphParser#methodBody}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunctionBody(GraphParser.FunctionBodyContext ctx);
+	void enterMethodBody(GraphParser.MethodBodyContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#functionBody}.
+	 * Exit a parse tree produced by {@link GraphParser#methodBody}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunctionBody(GraphParser.FunctionBodyContext ctx);
+	void exitMethodBody(GraphParser.MethodBodyContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GraphParser#block}.
 	 * @param ctx the parse tree
@@ -158,15 +158,15 @@ public interface GraphListener extends ParseTreeListener {
 	 */
 	void exitExpressionStatement(GraphParser.ExpressionStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#functionCallStatement}.
+	 * Enter a parse tree produced by {@link GraphParser#methodCallStatement}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunctionCallStatement(GraphParser.FunctionCallStatementContext ctx);
+	void enterMethodCallStatement(GraphParser.MethodCallStatementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#functionCallStatement}.
+	 * Exit a parse tree produced by {@link GraphParser#methodCallStatement}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunctionCallStatement(GraphParser.FunctionCallStatementContext ctx);
+	void exitMethodCallStatement(GraphParser.MethodCallStatementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GraphParser#returnStatement}.
 	 * @param ctx the parse tree
@@ -388,15 +388,15 @@ public interface GraphListener extends ParseTreeListener {
 	 */
 	void exitCastExpression(GraphParser.CastExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#functionCallExpression}.
+	 * Enter a parse tree produced by {@link GraphParser#methodCallExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunctionCallExpression(GraphParser.FunctionCallExpressionContext ctx);
+	void enterMethodCallExpression(GraphParser.MethodCallExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#functionCallExpression}.
+	 * Exit a parse tree produced by {@link GraphParser#methodCallExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunctionCallExpression(GraphParser.FunctionCallExpressionContext ctx);
+	void exitMethodCallExpression(GraphParser.MethodCallExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GraphParser#getExpression}.
 	 * @param ctx the parse tree
@@ -418,23 +418,23 @@ public interface GraphListener extends ParseTreeListener {
 	 */
 	void exitSizeExpression(GraphParser.SizeExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#printExpression}.
+	 * Enter a parse tree produced by {@link GraphParser#printlnExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterPrintExpression(GraphParser.PrintExpressionContext ctx);
+	void enterPrintlnExpression(GraphParser.PrintlnExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#printExpression}.
+	 * Exit a parse tree produced by {@link GraphParser#printlnExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitPrintExpression(GraphParser.PrintExpressionContext ctx);
+	void exitPrintlnExpression(GraphParser.PrintlnExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#functionCallArguments}.
+	 * Enter a parse tree produced by {@link GraphParser#methodCallArguments}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunctionCallArguments(GraphParser.FunctionCallArgumentsContext ctx);
+	void enterMethodCallArguments(GraphParser.MethodCallArgumentsContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#functionCallArguments}.
+	 * Exit a parse tree produced by {@link GraphParser#methodCallArguments}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunctionCallArguments(GraphParser.FunctionCallArgumentsContext ctx);
+	void exitMethodCallArguments(GraphParser.MethodCallArgumentsContext ctx);
 }

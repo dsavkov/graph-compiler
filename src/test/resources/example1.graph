@@ -26,10 +26,10 @@ void main() {
     arc da = arc(d, a);
 
     // build graph
-    graph g = {};
+    graph g = graph();
     println("Initial graph: " + g);
     println("Building graph...");
-    g = {a, b, c, d, ab, bc, cd, da};
+    g = graph(a, b, c, d, ab, bc, cd, da);
     println("Graph built: " + g);
 
     // print results

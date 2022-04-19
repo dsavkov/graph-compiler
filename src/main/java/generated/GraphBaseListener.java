@@ -64,85 +64,85 @@ public class GraphBaseListener implements GraphListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCompilationUnit(GraphParser.CompilationUnitContext ctx) { }
+	@Override public void enterEntryPoint(GraphParser.EntryPointContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCompilationUnit(GraphParser.CompilationUnitContext ctx) { }
+	@Override public void exitEntryPoint(GraphParser.EntryPointContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMainFunctionDeclaration(GraphParser.MainFunctionDeclarationContext ctx) { }
+	@Override public void enterMainMethodDeclaration(GraphParser.MainMethodDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMainFunctionDeclaration(GraphParser.MainFunctionDeclarationContext ctx) { }
+	@Override public void exitMainMethodDeclaration(GraphParser.MainMethodDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionDeclaration(GraphParser.FunctionDeclarationContext ctx) { }
+	@Override public void enterMethodDeclaration(GraphParser.MethodDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionDeclaration(GraphParser.FunctionDeclarationContext ctx) { }
+	@Override public void exitMethodDeclaration(GraphParser.MethodDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionParameters(GraphParser.FunctionParametersContext ctx) { }
+	@Override public void enterMethodParameters(GraphParser.MethodParametersContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionParameters(GraphParser.FunctionParametersContext ctx) { }
+	@Override public void exitMethodParameters(GraphParser.MethodParametersContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionParameterDecls(GraphParser.FunctionParameterDeclsContext ctx) { }
+	@Override public void enterMethodParameterDecls(GraphParser.MethodParameterDeclsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionParameterDecls(GraphParser.FunctionParameterDeclsContext ctx) { }
+	@Override public void exitMethodParameterDecls(GraphParser.MethodParameterDeclsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFormalParameterDeclsRest(GraphParser.FormalParameterDeclsRestContext ctx) { }
+	@Override public void enterMethodParameterDeclsRest(GraphParser.MethodParameterDeclsRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFormalParameterDeclsRest(GraphParser.FormalParameterDeclsRestContext ctx) { }
+	@Override public void exitMethodParameterDeclsRest(GraphParser.MethodParameterDeclsRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionBody(GraphParser.FunctionBodyContext ctx) { }
+	@Override public void enterMethodBody(GraphParser.MethodBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionBody(GraphParser.FunctionBodyContext ctx) { }
+	@Override public void exitMethodBody(GraphParser.MethodBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -196,13 +196,13 @@ public class GraphBaseListener implements GraphListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionCallStatement(GraphParser.FunctionCallStatementContext ctx) { }
+	@Override public void enterMethodCallStatement(GraphParser.MethodCallStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionCallStatement(GraphParser.FunctionCallStatementContext ctx) { }
+	@Override public void exitMethodCallStatement(GraphParser.MethodCallStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -472,13 +472,13 @@ public class GraphBaseListener implements GraphListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionCallExpression(GraphParser.FunctionCallExpressionContext ctx) { }
+	@Override public void enterMethodCallExpression(GraphParser.MethodCallExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionCallExpression(GraphParser.FunctionCallExpressionContext ctx) { }
+	@Override public void exitMethodCallExpression(GraphParser.MethodCallExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -508,25 +508,25 @@ public class GraphBaseListener implements GraphListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrintExpression(GraphParser.PrintExpressionContext ctx) { }
+	@Override public void enterPrintlnExpression(GraphParser.PrintlnExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrintExpression(GraphParser.PrintExpressionContext ctx) { }
+	@Override public void exitPrintlnExpression(GraphParser.PrintlnExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunctionCallArguments(GraphParser.FunctionCallArgumentsContext ctx) { }
+	@Override public void enterMethodCallArguments(GraphParser.MethodCallArgumentsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunctionCallArguments(GraphParser.FunctionCallArgumentsContext ctx) { }
+	@Override public void exitMethodCallArguments(GraphParser.MethodCallArgumentsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

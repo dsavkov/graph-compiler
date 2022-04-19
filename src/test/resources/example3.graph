@@ -1,5 +1,5 @@
 void main() {
-    graph initial = (graph) {1, 1};
+    graph initial = (graph) node(1, 1);
     graph g = initial;
     node n1 = g.get(0);
     println(g.size());
@@ -8,7 +8,7 @@ void main() {
     node n2 = g.get(1);
     println(g.size());
 
-    g = g + {n1, n2};
+    g = g + arc(n1, n2);
     println(g.size());
 
     g = g - n1;

@@ -45,49 +45,49 @@ public class GraphBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCompilationUnit(GraphParser.CompilationUnitContext ctx) { return visitChildren(ctx); }
+	@Override public T visitEntryPoint(GraphParser.EntryPointContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMainFunctionDeclaration(GraphParser.MainFunctionDeclarationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMainMethodDeclaration(GraphParser.MainMethodDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunctionDeclaration(GraphParser.FunctionDeclarationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMethodDeclaration(GraphParser.MethodDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunctionParameters(GraphParser.FunctionParametersContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMethodParameters(GraphParser.MethodParametersContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunctionParameterDecls(GraphParser.FunctionParameterDeclsContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMethodParameterDecls(GraphParser.MethodParameterDeclsContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFormalParameterDeclsRest(GraphParser.FormalParameterDeclsRestContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMethodParameterDeclsRest(GraphParser.MethodParameterDeclsRestContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunctionBody(GraphParser.FunctionBodyContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMethodBody(GraphParser.MethodBodyContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -122,7 +122,7 @@ public class GraphBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunctionCallStatement(GraphParser.FunctionCallStatementContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMethodCallStatement(GraphParser.MethodCallStatementContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -283,7 +283,7 @@ public class GraphBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunctionCallExpression(GraphParser.FunctionCallExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMethodCallExpression(GraphParser.MethodCallExpressionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -304,12 +304,12 @@ public class GraphBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPrintExpression(GraphParser.PrintExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPrintlnExpression(GraphParser.PrintlnExpressionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunctionCallArguments(GraphParser.FunctionCallArgumentsContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMethodCallArguments(GraphParser.MethodCallArgumentsContext ctx) { return visitChildren(ctx); }
 }

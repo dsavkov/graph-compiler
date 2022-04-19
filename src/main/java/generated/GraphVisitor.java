@@ -35,47 +35,47 @@ public interface GraphVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLogicalOperator(GraphParser.LogicalOperatorContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#compilationUnit}.
+	 * Visit a parse tree produced by {@link GraphParser#entryPoint}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCompilationUnit(GraphParser.CompilationUnitContext ctx);
+	T visitEntryPoint(GraphParser.EntryPointContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#mainFunctionDeclaration}.
+	 * Visit a parse tree produced by {@link GraphParser#mainMethodDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMainFunctionDeclaration(GraphParser.MainFunctionDeclarationContext ctx);
+	T visitMainMethodDeclaration(GraphParser.MainMethodDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#functionDeclaration}.
+	 * Visit a parse tree produced by {@link GraphParser#methodDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionDeclaration(GraphParser.FunctionDeclarationContext ctx);
+	T visitMethodDeclaration(GraphParser.MethodDeclarationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#functionParameters}.
+	 * Visit a parse tree produced by {@link GraphParser#methodParameters}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionParameters(GraphParser.FunctionParametersContext ctx);
+	T visitMethodParameters(GraphParser.MethodParametersContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#functionParameterDecls}.
+	 * Visit a parse tree produced by {@link GraphParser#methodParameterDecls}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionParameterDecls(GraphParser.FunctionParameterDeclsContext ctx);
+	T visitMethodParameterDecls(GraphParser.MethodParameterDeclsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#formalParameterDeclsRest}.
+	 * Visit a parse tree produced by {@link GraphParser#methodParameterDeclsRest}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFormalParameterDeclsRest(GraphParser.FormalParameterDeclsRestContext ctx);
+	T visitMethodParameterDeclsRest(GraphParser.MethodParameterDeclsRestContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#functionBody}.
+	 * Visit a parse tree produced by {@link GraphParser#methodBody}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionBody(GraphParser.FunctionBodyContext ctx);
+	T visitMethodBody(GraphParser.MethodBodyContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GraphParser#block}.
 	 * @param ctx the parse tree
@@ -101,11 +101,11 @@ public interface GraphVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpressionStatement(GraphParser.ExpressionStatementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#functionCallStatement}.
+	 * Visit a parse tree produced by {@link GraphParser#methodCallStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionCallStatement(GraphParser.FunctionCallStatementContext ctx);
+	T visitMethodCallStatement(GraphParser.MethodCallStatementContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GraphParser#returnStatement}.
 	 * @param ctx the parse tree
@@ -239,11 +239,11 @@ public interface GraphVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCastExpression(GraphParser.CastExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#functionCallExpression}.
+	 * Visit a parse tree produced by {@link GraphParser#methodCallExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionCallExpression(GraphParser.FunctionCallExpressionContext ctx);
+	T visitMethodCallExpression(GraphParser.MethodCallExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GraphParser#getExpression}.
 	 * @param ctx the parse tree
@@ -257,15 +257,15 @@ public interface GraphVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSizeExpression(GraphParser.SizeExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#printExpression}.
+	 * Visit a parse tree produced by {@link GraphParser#printlnExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitPrintExpression(GraphParser.PrintExpressionContext ctx);
+	T visitPrintlnExpression(GraphParser.PrintlnExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#functionCallArguments}.
+	 * Visit a parse tree produced by {@link GraphParser#methodCallArguments}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionCallArguments(GraphParser.FunctionCallArgumentsContext ctx);
+	T visitMethodCallArguments(GraphParser.MethodCallArgumentsContext ctx);
 }

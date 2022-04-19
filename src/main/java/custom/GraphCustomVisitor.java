@@ -6,34 +6,34 @@ import generated.GraphParser.BlockStatementContext;
 import generated.GraphParser.CastExpressionContext;
 import generated.GraphParser.ComparisonExpressionContext;
 import generated.GraphParser.ComparisonOperatorContext;
-import generated.GraphParser.CompilationUnitContext;
 import generated.GraphParser.DefaultPrimitiveTypeExpressionContext;
+import generated.GraphParser.EntryPointContext;
 import generated.GraphParser.ExpressionContext;
 import generated.GraphParser.ExpressionStatementContext;
 import generated.GraphParser.ForControlContext;
 import generated.GraphParser.ForStatementContext;
-import generated.GraphParser.FormalParameterDeclsRestContext;
-import generated.GraphParser.FunctionBodyContext;
-import generated.GraphParser.FunctionCallArgumentsContext;
-import generated.GraphParser.FunctionCallExpressionContext;
-import generated.GraphParser.FunctionCallStatementContext;
-import generated.GraphParser.FunctionDeclarationContext;
-import generated.GraphParser.FunctionParameterDeclsContext;
-import generated.GraphParser.FunctionParametersContext;
 import generated.GraphParser.GetExpressionContext;
 import generated.GraphParser.IfStatementContext;
 import generated.GraphParser.LocalVariableDeclarationContext;
 import generated.GraphParser.LocalVariableDeclarationStatementContext;
 import generated.GraphParser.LogicalExpressionContext;
 import generated.GraphParser.LogicalOperatorContext;
-import generated.GraphParser.MainFunctionDeclarationContext;
+import generated.GraphParser.MainMethodDeclarationContext;
 import generated.GraphParser.MathExpressionContext;
 import generated.GraphParser.MathOperatorContext;
+import generated.GraphParser.MethodBodyContext;
+import generated.GraphParser.MethodCallArgumentsContext;
+import generated.GraphParser.MethodCallExpressionContext;
+import generated.GraphParser.MethodCallStatementContext;
+import generated.GraphParser.MethodDeclarationContext;
+import generated.GraphParser.MethodParameterDeclsContext;
+import generated.GraphParser.MethodParameterDeclsRestContext;
+import generated.GraphParser.MethodParametersContext;
 import generated.GraphParser.MultiPrimitiveTypeExpressionContext;
 import generated.GraphParser.ParExpressionContext;
 import generated.GraphParser.PrimitiveTypeContext;
 import generated.GraphParser.PrimitiveTypeExpressionContext;
-import generated.GraphParser.PrintExpressionContext;
+import generated.GraphParser.PrintlnExpressionContext;
 import generated.GraphParser.ReturnStatementContext;
 import generated.GraphParser.SizeExpressionContext;
 import generated.GraphParser.StatementContext;
@@ -48,7 +48,6 @@ import generated.GraphParser.WhileStatementContext;
 public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	private final IndentProvider indentProvider = new IndentProvider("\t");
-	private String currentDataType = null;
 
 	@Override
 	public String visitPrimitiveType(PrimitiveTypeContext ctx) {
@@ -111,14 +110,14 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 	}
 
 	@Override
-	public String visitCompilationUnit(CompilationUnitContext ctx) {
+	public String visitEntryPoint(EntryPointContext ctx) {
 		StringBuilder builder = new StringBuilder(indentProvider.getIndent());
 		builder.append("public class GraphApp {\n");
 		indentProvider.next();
-		for (FunctionDeclarationContext c : ctx.functionDeclaration()) {
-			builder.append(visitFunctionDeclaration(c));
+		for (MethodDeclarationContext c : ctx.methodDeclaration()) {
+			builder.append(visitMethodDeclaration(c));
 		}
-		builder.append(visitMainFunctionDeclaration(ctx.mainFunctionDeclaration()));
+		builder.append(visitMainMethodDeclaration(ctx.mainMethodDeclaration()));
 		indentProvider.prev();
 		builder.append(indentProvider.getIndent());
 		builder.append("}");
@@ -126,60 +125,59 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 	}
 
 	@Override
-	public String visitMainFunctionDeclaration(MainFunctionDeclarationContext ctx) {
-		StringBuilder result = new StringBuilder(indentProvider.getIndent());
-		result.append("public static void main(String[] args) ");
-		result.append(visitFunctionBody(ctx.functionBody()));
-		return result.toString();
-	}
-
-	@Override
-	public String visitFunctionDeclaration(FunctionDeclarationContext ctx) {
-		StringBuilder result = new StringBuilder(indentProvider.getIndent());
-		result.append("public");
-		result.append(" ");
-		result.append(ctx.VOID() != null ? "void" : visitPrimitiveType(ctx.primitiveType()));
-		result.append(" ");
-		result.append(ctx.Identifier().toString());
-		result.append(visitFunctionParameters(ctx.functionParameters()));
-		result.append(" ");
-		result.append(visitFunctionBody(ctx.functionBody()));
-		return result.toString();
-	}
-
-	@Override
-	public String visitFunctionParameters(FunctionParametersContext ctx) {
+	public String visitMainMethodDeclaration(MainMethodDeclarationContext ctx) {
 		return String.format(
-				"(%s)",
-				ctx.functionParameterDecls() == null ? ""
-						: visitFunctionParameterDecls(ctx.functionParameterDecls())
+				"%spublic static void main(String[] args) %s",
+				indentProvider.getIndent(),
+				visitMethodBody(ctx.methodBody())
 		);
 	}
 
 	@Override
-	public String visitFunctionParameterDecls(FunctionParameterDeclsContext ctx) {
+	public String visitMethodDeclaration(MethodDeclarationContext ctx) {
+		return String.format(
+				"%spublic %s %s%s %s",
+				indentProvider.getIndent(),
+				ctx.VOID() != null ? "void" : visitPrimitiveType(ctx.primitiveType()),
+				ctx.Identifier().toString(),
+				visitMethodParameters(ctx.methodParameters()),
+				visitMethodBody(ctx.methodBody())
+		);
+	}
+
+	@Override
+	public String visitMethodParameters(MethodParametersContext ctx) {
+		return String.format(
+				"(%s)",
+				ctx.methodParameterDecls() == null ? ""
+						: visitMethodParameterDecls(ctx.methodParameterDecls())
+		);
+	}
+
+	@Override
+	public String visitMethodParameterDecls(MethodParameterDeclsContext ctx) {
 		return String.format(
 				"%s %s",
 				visitPrimitiveType(ctx.primitiveType()),
-				visitFormalParameterDeclsRest(ctx.formalParameterDeclsRest())
+				visitMethodParameterDeclsRest(ctx.methodParameterDeclsRest())
 		);
 	}
 
 	@Override
-	public String visitFormalParameterDeclsRest(FormalParameterDeclsRestContext ctx) {
+	public String visitMethodParameterDeclsRest(MethodParameterDeclsRestContext ctx) {
 		return String.format(
 				"%s%s",
 				ctx.Identifier().toString(),
-				ctx.functionParameterDecls() == null
+				ctx.methodParameterDecls() == null
 						? ""
 						: String.format(", %s",
-								visitFunctionParameterDecls(ctx.functionParameterDecls()))
+								visitMethodParameterDecls(ctx.methodParameterDecls()))
 		);
 	}
 
 	@Override
-	public String visitFunctionBody(FunctionBodyContext ctx) {
-		return visitBlock(ctx.block());
+	public String visitMethodBody(MethodBodyContext ctx) {
+		return String.format("%s\n", visitBlock(ctx.block()));
 	}
 
 	@Override
@@ -224,8 +222,8 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 			return visitUntilStatement(ctx.untilStatement());
 		} else if (ctx.returnStatement() != null) {
 			return visitReturnStatement(ctx.returnStatement());
-		} else if (ctx.functionCallStatement() != null) {
-			return visitFunctionCallStatement(ctx.functionCallStatement());
+		} else if (ctx.methodCallStatement() != null) {
+			return visitMethodCallStatement(ctx.methodCallStatement());
 		} else if (ctx.expressionStatement() != null) {
 			return visitExpressionStatement(ctx.expressionStatement());
 		} else {
@@ -239,8 +237,8 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 	}
 
 	@Override
-	public String visitFunctionCallStatement(FunctionCallStatementContext ctx) {
-		return String.format("%s;", visitFunctionCallExpression(ctx.functionCallExpression()));
+	public String visitMethodCallStatement(MethodCallStatementContext ctx) {
+		return String.format("%s;", visitMethodCallExpression(ctx.methodCallExpression()));
 	}
 
 	@Override
@@ -415,10 +413,10 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 	public String visitUnaryNotPlusMinusExpression(UnaryNotPlusMinusExpressionContext ctx) {
 		if (ctx.castExpression() != null) {
 			return visitCastExpression(ctx.castExpression());
-		} else if (ctx.functionCallExpression() != null) {
-			return visitFunctionCallExpression(ctx.functionCallExpression());
-		} else if (ctx.functionCallExpression() != null) {
-			return visitFunctionCallExpression(ctx.functionCallExpression());
+		} else if (ctx.methodCallExpression() != null) {
+			return visitMethodCallExpression(ctx.methodCallExpression());
+		} else if (ctx.methodCallExpression() != null) {
+			return visitMethodCallExpression(ctx.methodCallExpression());
 		} else if (ctx.primitiveTypeExpression() != null) {
 			return visitPrimitiveTypeExpression(ctx.primitiveTypeExpression());
 		} else if (ctx.Identifier() != null) {
@@ -489,19 +487,19 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 	}
 
 	@Override
-	public String visitFunctionCallExpression(FunctionCallExpressionContext ctx) {
-		if (ctx.Identifier() != null && ctx.functionCallArguments() != null) {
+	public String visitMethodCallExpression(MethodCallExpressionContext ctx) {
+		if (ctx.Identifier() != null && ctx.methodCallArguments() != null) {
 			return String.format(
 					"%s%s",
 					ctx.Identifier().toString(),
-					visitFunctionCallArguments(ctx.functionCallArguments())
+					visitMethodCallArguments(ctx.methodCallArguments())
 			);
 		} else if (ctx.getExpression() != null) {
 			return visitGetExpression(ctx.getExpression());
 		} else if (ctx.sizeExpression() != null) {
 			return visitSizeExpression(ctx.sizeExpression());
-		} else if (ctx.printExpression() != null) {
-			return visitPrintExpression(ctx.printExpression());
+		} else if (ctx.printlnExpression() != null) {
+			return visitPrintlnExpression(ctx.printlnExpression());
 		} else {
 			return "visitFunctionCallExpression_ERROR";
 		}
@@ -518,12 +516,12 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 	}
 
 	@Override
-	public String visitPrintExpression(PrintExpressionContext ctx) {
+	public String visitPrintlnExpression(PrintlnExpressionContext ctx) {
 		return String.format("System.out.println(%s)", visitExpression(ctx.expression()));
 	}
 
 	@Override
-	public String visitFunctionCallArguments(FunctionCallArgumentsContext ctx) {
+	public String visitMethodCallArguments(MethodCallArgumentsContext ctx) {
 		StringBuilder result = new StringBuilder();
 		result.append("(");
 		if (ctx.expression(0) != null) {
