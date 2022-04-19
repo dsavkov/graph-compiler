@@ -299,15 +299,11 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitLocalVariableDeclarationStatement(LocalVariableDeclarationStatementContext ctx) {
-		String result = String.format("%s;",
-				visitLocalVariableDeclaration(ctx.localVariableDeclaration()));
-		currentDataType = null;
-		return result;
+		return String.format("%s;", visitLocalVariableDeclaration(ctx.localVariableDeclaration()));
 	}
 
 	@Override
 	public String visitLocalVariableDeclaration(LocalVariableDeclarationContext ctx) {
-		currentDataType = visitPrimitiveType(ctx.primitiveType());
 		return String.format(
 				"%s %s",
 				visitPrimitiveType(ctx.primitiveType()),
@@ -463,7 +459,7 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 	public String visitDefaultPrimitiveTypeExpression(DefaultPrimitiveTypeExpressionContext ctx) {
 		return String.format(
 				"new %s(%s, %s)",
-				currentDataType,
+				visitPrimitiveType(ctx.primitiveType()),
 				visitExpression(ctx.expression(0)),
 				visitExpression(ctx.expression(1))
 		);
@@ -472,7 +468,9 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 	@Override
 	public String visitMultiPrimitiveTypeExpression(MultiPrimitiveTypeExpressionContext ctx) {
 		StringBuilder result = new StringBuilder();
-		result.append("new Graph(");
+		result.append("new ");
+		result.append(visitPrimitiveType(ctx.primitiveType()));
+		result.append("(");
 		if (ctx.expression(0) != null) {
 			result.append(visitExpression(ctx.expression(0)));
 		}
@@ -486,7 +484,7 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitCastExpression(CastExpressionContext ctx) {
-		return String.format("(%s)%s", visitPrimitiveType(ctx.primitiveType()),
+		return String.format("(%s) %s", visitPrimitiveType(ctx.primitiveType()),
 				visitUnaryExpression(ctx.unaryExpression()));
 	}
 
@@ -511,7 +509,7 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitGetExpression(GetExpressionContext ctx) {
-		return super.visitGetExpression(ctx);
+		return String.format("%s.getNode(%s)", ctx.Identifier().toString(), ctx.NUMBER().toString());
 	}
 
 	@Override

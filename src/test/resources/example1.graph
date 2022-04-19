@@ -14,22 +14,22 @@ function int getArcsCount(graph g) {
 
 function void main() {
     // initialize nodes
-    node a = {1, 1};
-    node b = {1, 2};
-    node c = {2, 1};
-    node d = {2, 2};
+    node a = node(1, 1);
+    node b = node(1, 2);
+    node c = node(2, 1);
+    node d = node(2, 2);
 
     // initialize arcs
-    arc ab = a + b;
-    arc bc = b + c;
-    arc cd = c + d;
-    arc da = d + a;
+    arc ab = arc(a, b);
+    arc bc = arc(b, c);
+    arc cd = arc(c, d);
+    arc da = arc(d, a);
 
     // build graph
-    graph g = {};
+    graph g = graph();
     print("Initial graph: " + g);
     print("Building graph...");
-    g = {a, b, c, d, ab, bc, cd, da};
+    g = graph(a, b, c, d, ab, bc, cd, da);
     print("Graph built: " + g);
 
     // print results

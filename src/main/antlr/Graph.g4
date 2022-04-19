@@ -227,11 +227,11 @@ primitiveTypeExpression
     ;
 
 defaultPrimitiveTypeExpression
-    :   OPEN_CURLY_BRACKET expression COMMA expression CLOSE_CURLY_BRACKET
+    :   primitiveType OPEN_BRACKET expression COMMA expression CLOSE_BRACKET
     ;
 
 multiPrimitiveTypeExpression
-    :   OPEN_CURLY_BRACKET expression? (COMMA expression)* CLOSE_CURLY_BRACKET
+    :   primitiveType OPEN_BRACKET expression? (COMMA expression)* CLOSE_BRACKET
     ;
 
 castExpression
