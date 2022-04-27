@@ -49,6 +49,7 @@ import generated.GraphParser.WhileStatementContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
@@ -59,6 +60,27 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	public List<Variable> getVariables() {
 		return variables;
+	}
+
+	public List<String> getGraphVariables() {
+		return variables.stream()
+				.filter(variable -> variable.getType().equals("Graph"))
+				.map(Variable::getName)
+				.collect(Collectors.toList());
+	}
+
+	public String visitGraphMathOperator(MathOperatorContext ctx) {
+		if (ctx.ADD() != null) {
+			return ".add(";
+		} else if (ctx.SUB() != null) {
+			return ".sub(";
+		} else if (ctx.MULTIPLY() != null) {
+			return ".mul(";
+		} else if (ctx.DIVIDE() != null) {
+			return ".div(";
+		} else {
+			return "visitMathOperator_ERROR";
+		}
 	}
 
 	@Override
@@ -425,10 +447,18 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 	@Override
 	public String visitMathExpression(MathExpressionContext ctx) {
 		StringBuilder result = new StringBuilder();
+		String unaryExpression = visitUnaryExpression(ctx.unaryExpression(0));
 		result.append(visitUnaryExpression(ctx.unaryExpression(0)));
+		boolean isGraph = getGraphVariables().stream().anyMatch(v -> v.equals(unaryExpression));
 		for (int i = 1; i < ctx.unaryExpression().size(); i++) {
-			result.append(visitMathOperator(ctx.mathOperator(i - 1)));
-			result.append(visitUnaryExpression(ctx.unaryExpression(i)));
+			if (isGraph) {
+				result.append(visitGraphMathOperator(ctx.mathOperator(i - 1)));
+				result.append(visitUnaryExpression(ctx.unaryExpression(i)));
+				result.append(")");
+			} else {
+				result.append(visitMathOperator(ctx.mathOperator(i - 1)));
+				result.append(visitUnaryExpression(ctx.unaryExpression(i)));
+			}
 		}
 		return result.toString();
 	}
