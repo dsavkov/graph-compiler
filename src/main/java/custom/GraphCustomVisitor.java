@@ -47,9 +47,19 @@ import generated.GraphParser.VariableDeclaratorsContext;
 import generated.GraphParser.VariableInitializerContext;
 import generated.GraphParser.WhileStatementContext;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	private final IndentProvider indentProvider = new IndentProvider("\t");
+	private final List<Variable> variables = new ArrayList<>();
+	private String currentModule = "global";
+	private String currentType = null;
+
+	public List<Variable> getVariables() {
+		return variables;
+	}
 
 	@Override
 	public String visitPrimitiveType(PrimitiveTypeContext ctx) {
@@ -133,6 +143,7 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitMainMethodDeclaration(MainMethodDeclarationContext ctx) {
+		currentModule = "main";
 		return String.format(
 				"%spublic static void main(String[] args) %s",
 				indentProvider.getIndent(),
@@ -142,6 +153,7 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitMethodDeclaration(MethodDeclarationContext ctx) {
+		currentModule = ctx.Identifier().toString();
 		return String.format(
 				"%spublic %s %s%s %s",
 				indentProvider.getIndent(),
@@ -312,9 +324,11 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitGlobalVariableDeclaration(GlobalVariableDeclarationContext ctx) {
+		String primitiveType = visitPrimitiveType(ctx.primitiveType());
+		currentType = primitiveType;
 		return String.format(
 				"%s %s",
-				visitPrimitiveType(ctx.primitiveType()),
+				primitiveType,
 				visitVariableDeclarators(ctx.variableDeclarators())
 		);
 	}
@@ -326,9 +340,11 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitLocalVariableDeclaration(LocalVariableDeclarationContext ctx) {
+		String primitiveType = visitPrimitiveType(ctx.primitiveType());
+		currentType = primitiveType;
 		return String.format(
 				"%s %s",
-				visitPrimitiveType(ctx.primitiveType()),
+				primitiveType,
 				visitVariableDeclarators(ctx.variableDeclarators())
 		);
 	}
@@ -346,6 +362,7 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitVariableDeclarator(VariableDeclaratorContext ctx) {
+		variables.add(new Variable(ctx.Identifier().toString(), currentType, currentModule));
 		return String.format(
 				"%s%s",
 				ctx.Identifier().toString(),
