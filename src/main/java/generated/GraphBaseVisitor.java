@@ -171,6 +171,20 @@ public class GraphBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements 
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitGlobalVariableDeclarationStatement(GraphParser.GlobalVariableDeclarationStatementContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitGlobalVariableDeclaration(GraphParser.GlobalVariableDeclarationContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitLocalVariableDeclarationStatement(GraphParser.LocalVariableDeclarationStatementContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

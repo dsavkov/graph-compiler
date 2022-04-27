@@ -143,6 +143,18 @@ public interface GraphVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitForControl(GraphParser.ForControlContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link GraphParser#globalVariableDeclarationStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGlobalVariableDeclarationStatement(GraphParser.GlobalVariableDeclarationStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GraphParser#globalVariableDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGlobalVariableDeclaration(GraphParser.GlobalVariableDeclarationContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link GraphParser#localVariableDeclarationStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

@@ -280,6 +280,30 @@ public class GraphBaseListener implements GraphListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterGlobalVariableDeclarationStatement(GraphParser.GlobalVariableDeclarationStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGlobalVariableDeclarationStatement(GraphParser.GlobalVariableDeclarationStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGlobalVariableDeclaration(GraphParser.GlobalVariableDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGlobalVariableDeclaration(GraphParser.GlobalVariableDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterLocalVariableDeclarationStatement(GraphParser.LocalVariableDeclarationStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}

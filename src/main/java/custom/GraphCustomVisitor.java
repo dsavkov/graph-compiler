@@ -13,6 +13,8 @@ import generated.GraphParser.ExpressionStatementContext;
 import generated.GraphParser.ForControlContext;
 import generated.GraphParser.ForStatementContext;
 import generated.GraphParser.GetExpressionContext;
+import generated.GraphParser.GlobalVariableDeclarationContext;
+import generated.GraphParser.GlobalVariableDeclarationStatementContext;
 import generated.GraphParser.IfStatementContext;
 import generated.GraphParser.LocalVariableDeclarationContext;
 import generated.GraphParser.LocalVariableDeclarationStatementContext;
@@ -114,6 +116,11 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 		StringBuilder builder = new StringBuilder(indentProvider.getIndent());
 		builder.append("public class GraphApp {\n");
 		indentProvider.next();
+		for (GlobalVariableDeclarationStatementContext c : ctx.globalVariableDeclarationStatement()) {
+			builder.append(visitGlobalVariableDeclarationStatement(c));
+			builder.append("\n");
+		}
+		builder.append("\n");
 		for (MethodDeclarationContext c : ctx.methodDeclaration()) {
 			builder.append(visitMethodDeclaration(c));
 		}
@@ -292,6 +299,23 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 				visitPrimitiveType(ctx.primitiveType()),
 				ctx.Identifier().toString(),
 				visitExpression(ctx.expression())
+		);
+	}
+
+	@Override
+	public String visitGlobalVariableDeclarationStatement(GlobalVariableDeclarationStatementContext ctx) {
+		return String.format("%sprivate %s;",
+				indentProvider.getIndent(),
+				visitGlobalVariableDeclaration(ctx.globalVariableDeclaration())
+		);
+	}
+
+	@Override
+	public String visitGlobalVariableDeclaration(GlobalVariableDeclarationContext ctx) {
+		return String.format(
+				"%s %s",
+				visitPrimitiveType(ctx.primitiveType()),
+				visitVariableDeclarators(ctx.variableDeclarators())
 		);
 	}
 

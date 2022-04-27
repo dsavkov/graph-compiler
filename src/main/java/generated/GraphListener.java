@@ -228,6 +228,26 @@ public interface GraphListener extends ParseTreeListener {
 	 */
 	void exitForControl(GraphParser.ForControlContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link GraphParser#globalVariableDeclarationStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterGlobalVariableDeclarationStatement(GraphParser.GlobalVariableDeclarationStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GraphParser#globalVariableDeclarationStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitGlobalVariableDeclarationStatement(GraphParser.GlobalVariableDeclarationStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GraphParser#globalVariableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterGlobalVariableDeclaration(GraphParser.GlobalVariableDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GraphParser#globalVariableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitGlobalVariableDeclaration(GraphParser.GlobalVariableDeclarationContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link GraphParser#localVariableDeclarationStatement}.
 	 * @param ctx the parse tree
 	 */

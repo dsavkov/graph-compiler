@@ -14,6 +14,7 @@ FOR : 'for';
 WHILE : 'while';
 UNTIL : 'until';
 RETURN : 'return';
+GLOBAL : 'global';
 
 // 2.1 Built-in types
 INT : 'int';
@@ -83,7 +84,7 @@ logicalOperator
 
 // 5. Statements and blocks
 entryPoint
-    :   methodDeclaration* mainMethodDeclaration EOF
+    :   globalVariableDeclarationStatement* methodDeclaration* mainMethodDeclaration EOF
     ;
 
 mainMethodDeclaration
@@ -160,6 +161,14 @@ forStatement
 
 forControl
     :   primitiveType Identifier IN expression
+    ;
+
+globalVariableDeclarationStatement
+    :   globalVariableDeclaration SEMIOCOLON
+    ;
+
+globalVariableDeclaration
+    :   GLOBAL primitiveType variableDeclarators
     ;
 
 localVariableDeclarationStatement

@@ -1,3 +1,6 @@
+global node globalNode = node(1, 2);
+global int zero = 0;
+
 int getNodesCount(graph g) {
     int result = 0;
     for (node n in g) result++;
