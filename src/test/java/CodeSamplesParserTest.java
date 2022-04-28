@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class CodeSamplesParserTest {
 
-	private static final File RESOURCES_FOLDER = Paths.get("src", "test", "resources").toFile();
+	private static final File RESOURCES_FOLDER = Paths.get("src", "main", "resources").toFile();
 	private static final List<String> EXAMPLE_FILES = new ArrayList<>();
 
 	@BeforeAll
