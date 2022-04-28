@@ -338,7 +338,7 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitGlobalVariableDeclarationStatement(GlobalVariableDeclarationStatementContext ctx) {
-		return String.format("%sprivate %s;",
+		return String.format("%sprivate static %s;",
 				indentProvider.getIndent(),
 				visitGlobalVariableDeclaration(ctx.globalVariableDeclaration())
 		);
