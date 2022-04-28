@@ -41,9 +41,6 @@ public class CodeSamplesParserTest {
 		var tree = parser.entryPoint();
 		var visitor = new GraphCustomVisitor();
 		System.out.println(visitor.visit(tree));
-		visitor.getVariables().forEach(System.out::println);
-		System.out.println();
-		visitor.getGraphVariables().forEach(System.out::println);
 	}
 
 	@Test
@@ -54,9 +51,6 @@ public class CodeSamplesParserTest {
 		var tree = parser.entryPoint();
 		var visitor = new GraphCustomVisitor();
 		System.out.println(visitor.visit(tree));
-		visitor.getVariables().forEach(System.out::println);
-		System.out.println();
-		visitor.getGraphVariables().forEach(System.out::println);
 	}
 
 	@Test
@@ -67,8 +61,5 @@ public class CodeSamplesParserTest {
 		var tree = parser.entryPoint();
 		var visitor = new GraphCustomVisitor();
 		System.out.println(visitor.visit(tree));
-		visitor.getVariables().forEach(System.out::println);
-		System.out.println();
-		visitor.getGraphVariables().forEach(System.out::println);
 	}
 }

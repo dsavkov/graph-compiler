@@ -177,7 +177,7 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 	public String visitMethodDeclaration(MethodDeclarationContext ctx) {
 		currentModule = ctx.Identifier().toString();
 		return String.format(
-				"%spublic %s %s%s %s",
+				"%spublic static %s %s%s %s",
 				indentProvider.getIndent(),
 				ctx.VOID() != null ? "void" : visitPrimitiveType(ctx.primitiveType()),
 				ctx.Identifier().toString(),
@@ -328,12 +328,12 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitForControl(ForControlContext ctx) {
-		return String.format(
-				"%s %s : %s",
-				visitPrimitiveType(ctx.primitiveType()),
-				ctx.Identifier().toString(),
-				visitExpression(ctx.expression())
-		);
+		String primitiveType = visitPrimitiveType(ctx.primitiveType());
+		String expression = visitExpression(ctx.expression());
+		if (primitiveType.equals("Node") || primitiveType.equals("Arc")) {
+			expression = String.format("%s.get%ss()", expression, primitiveType);
+		}
+		return String.format("%s %s : %s", primitiveType, ctx.Identifier().toString(), expression);
 	}
 
 	@Override

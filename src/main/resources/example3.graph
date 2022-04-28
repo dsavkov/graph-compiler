@@ -1,0 +1,18 @@
+void main() {
+    graph initial = (graph) node(1, 1);
+    graph g = initial;
+    node n1 = g.get(0);
+    println(g.size());
+
+    g = g + node(2, 2);
+    node n2 = g.get(1);
+    println(g.size());
+
+    g = g + arc(n1, n2);
+    println(g.size());
+
+    g = g - n1;
+    println(g.size());
+
+    println(initial == g);
+}
