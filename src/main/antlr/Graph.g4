@@ -14,6 +14,7 @@ FOR : 'for';
 WHILE : 'while';
 UNTIL : 'until';
 RETURN : 'return';
+GLOBAL : 'global';
 
 // 2.1 Built-in types
 INT : 'int';
@@ -83,7 +84,7 @@ logicalOperator
 
 // 5. Statements and blocks
 compilationUnit
-    :   functionDeclaration* mainFunctionDeclaration EOF
+    :   globalVariableDeclarationStatement* functionDeclaration* mainFunctionDeclaration EOF
     ;
 
 mainFunctionDeclaration
@@ -99,10 +100,10 @@ functionParameters
     ;
 
 functionParameterDecls
-    :   primitiveType formalParameterDeclsRest
+    :   primitiveType functionParameterDeclsRest
     ;
 
-formalParameterDeclsRest
+functionParameterDeclsRest
     :   Identifier (COMMA functionParameterDecls)?
     ;
 
@@ -160,6 +161,14 @@ forStatement
 
 forControl
     :   primitiveType Identifier COLON expression
+    ;
+
+globalVariableDeclarationStatement
+    :   globalVariableDeclaration SEMIOCOLON
+    ;
+
+globalVariableDeclaration
+    :   GLOBAL primitiveType variableDeclarators
     ;
 
 localVariableDeclarationStatement

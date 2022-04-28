@@ -124,13 +124,13 @@ public class GraphBaseListener implements GraphListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFormalParameterDeclsRest(GraphParser.FormalParameterDeclsRestContext ctx) { }
+	@Override public void enterFunctionParameterDeclsRest(GraphParser.FunctionParameterDeclsRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFormalParameterDeclsRest(GraphParser.FormalParameterDeclsRestContext ctx) { }
+	@Override public void exitFunctionParameterDeclsRest(GraphParser.FunctionParameterDeclsRestContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -275,6 +275,30 @@ public class GraphBaseListener implements GraphListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitForControl(GraphParser.ForControlContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGlobalVariableDeclarationStatement(GraphParser.GlobalVariableDeclarationStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGlobalVariableDeclarationStatement(GraphParser.GlobalVariableDeclarationStatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGlobalVariableDeclaration(GraphParser.GlobalVariableDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGlobalVariableDeclaration(GraphParser.GlobalVariableDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

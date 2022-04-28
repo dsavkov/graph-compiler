@@ -65,11 +65,11 @@ public interface GraphVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionParameterDecls(GraphParser.FunctionParameterDeclsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link GraphParser#formalParameterDeclsRest}.
+	 * Visit a parse tree produced by {@link GraphParser#functionParameterDeclsRest}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFormalParameterDeclsRest(GraphParser.FormalParameterDeclsRestContext ctx);
+	T visitFunctionParameterDeclsRest(GraphParser.FunctionParameterDeclsRestContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GraphParser#functionBody}.
 	 * @param ctx the parse tree
@@ -142,6 +142,18 @@ public interface GraphVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitForControl(GraphParser.ForControlContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GraphParser#globalVariableDeclarationStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGlobalVariableDeclarationStatement(GraphParser.GlobalVariableDeclarationStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link GraphParser#globalVariableDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGlobalVariableDeclaration(GraphParser.GlobalVariableDeclarationContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link GraphParser#localVariableDeclarationStatement}.
 	 * @param ctx the parse tree

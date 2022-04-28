@@ -12,15 +12,17 @@ import generated.GraphParser.ExpressionContext;
 import generated.GraphParser.ExpressionStatementContext;
 import generated.GraphParser.ForControlContext;
 import generated.GraphParser.ForStatementContext;
-import generated.GraphParser.FormalParameterDeclsRestContext;
 import generated.GraphParser.FunctionBodyContext;
 import generated.GraphParser.FunctionCallArgumentsContext;
 import generated.GraphParser.FunctionCallExpressionContext;
 import generated.GraphParser.FunctionCallStatementContext;
 import generated.GraphParser.FunctionDeclarationContext;
 import generated.GraphParser.FunctionParameterDeclsContext;
+import generated.GraphParser.FunctionParameterDeclsRestContext;
 import generated.GraphParser.FunctionParametersContext;
 import generated.GraphParser.GetExpressionContext;
+import generated.GraphParser.GlobalVariableDeclarationContext;
+import generated.GraphParser.GlobalVariableDeclarationStatementContext;
 import generated.GraphParser.IfStatementContext;
 import generated.GraphParser.LocalVariableDeclarationContext;
 import generated.GraphParser.LocalVariableDeclarationStatementContext;
@@ -45,10 +47,41 @@ import generated.GraphParser.VariableDeclaratorsContext;
 import generated.GraphParser.VariableInitializerContext;
 import generated.GraphParser.WhileStatementContext;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	private final IndentProvider indentProvider = new IndentProvider("\t");
-	private String currentDataType = null;
+	private final List<Variable> variables = new ArrayList<>();
+	private String currentModule = "global";
+	private String currentType = null;
+
+	public List<Variable> getVariables() {
+		return variables;
+	}
+
+	public List<String> getGraphVariables() {
+		return variables.stream()
+				.filter(variable -> variable.getType().equals("Graph"))
+				.map(Variable::getName)
+				.collect(Collectors.toList());
+	}
+
+	public String visitGraphMathOperator(MathOperatorContext ctx) {
+		if (ctx.ADD() != null) {
+			return ".add(";
+		} else if (ctx.SUB() != null) {
+			return ".sub(";
+		} else if (ctx.MULTIPLY() != null) {
+			return ".mul(";
+		} else if (ctx.DIVIDE() != null) {
+			return ".div(";
+		} else {
+			return "visitMathOperator_ERROR";
+		}
+	}
 
 	@Override
 	public String visitPrimitiveType(PrimitiveTypeContext ctx) {
@@ -115,6 +148,11 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 		StringBuilder builder = new StringBuilder(indentProvider.getIndent());
 		builder.append("public class GraphApp {\n");
 		indentProvider.next();
+		for (GlobalVariableDeclarationStatementContext c : ctx.globalVariableDeclarationStatement()) {
+			builder.append(visitGlobalVariableDeclarationStatement(c));
+			builder.append("\n");
+		}
+		builder.append("\n");
 		for (FunctionDeclarationContext c : ctx.functionDeclaration()) {
 			builder.append(visitFunctionDeclaration(c));
 		}
@@ -127,24 +165,25 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitMainFunctionDeclaration(MainFunctionDeclarationContext ctx) {
-		StringBuilder result = new StringBuilder(indentProvider.getIndent());
-		result.append("public static void main(String[] args) ");
-		result.append(visitFunctionBody(ctx.functionBody()));
-		return result.toString();
+		currentModule = "main";
+		return String.format(
+				"%spublic static void main(String[] args) %s",
+				indentProvider.getIndent(),
+				visitFunctionBody(ctx.functionBody())
+		);
 	}
 
 	@Override
 	public String visitFunctionDeclaration(FunctionDeclarationContext ctx) {
-		StringBuilder result = new StringBuilder(indentProvider.getIndent());
-		result.append("public");
-		result.append(" ");
-		result.append(ctx.VOID() != null ? "void" : visitPrimitiveType(ctx.primitiveType()));
-		result.append(" ");
-		result.append(ctx.Identifier().toString());
-		result.append(visitFunctionParameters(ctx.functionParameters()));
-		result.append(" ");
-		result.append(visitFunctionBody(ctx.functionBody()));
-		return result.toString();
+		currentModule = ctx.Identifier().toString();
+		return String.format(
+				"%spublic static %s %s%s %s",
+				indentProvider.getIndent(),
+				ctx.VOID() != null ? "void" : visitPrimitiveType(ctx.primitiveType()),
+				ctx.Identifier().toString(),
+				visitFunctionParameters(ctx.functionParameters()),
+				visitFunctionBody(ctx.functionBody())
+		);
 	}
 
 	@Override
@@ -161,12 +200,12 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 		return String.format(
 				"%s %s",
 				visitPrimitiveType(ctx.primitiveType()),
-				visitFormalParameterDeclsRest(ctx.formalParameterDeclsRest())
+				visitFunctionParameterDeclsRest(ctx.functionParameterDeclsRest())
 		);
 	}
 
 	@Override
-	public String visitFormalParameterDeclsRest(FormalParameterDeclsRestContext ctx) {
+	public String visitFunctionParameterDeclsRest(FunctionParameterDeclsRestContext ctx) {
 		return String.format(
 				"%s%s",
 				ctx.Identifier().toString(),
@@ -179,7 +218,7 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitFunctionBody(FunctionBodyContext ctx) {
-		return visitBlock(ctx.block());
+		return String.format("%s\n", visitBlock(ctx.block()));
 	}
 
 	@Override
@@ -289,11 +328,30 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitForControl(ForControlContext ctx) {
+		String primitiveType = visitPrimitiveType(ctx.primitiveType());
+		String expression = visitExpression(ctx.expression());
+		if (primitiveType.equals("Node") || primitiveType.equals("Arc")) {
+			expression = String.format("%s.get%ss()", expression, primitiveType);
+		}
+		return String.format("%s %s : %s", primitiveType, ctx.Identifier().toString(), expression);
+	}
+
+	@Override
+	public String visitGlobalVariableDeclarationStatement(GlobalVariableDeclarationStatementContext ctx) {
+		return String.format("%sprivate static %s;",
+				indentProvider.getIndent(),
+				visitGlobalVariableDeclaration(ctx.globalVariableDeclaration())
+		);
+	}
+
+	@Override
+	public String visitGlobalVariableDeclaration(GlobalVariableDeclarationContext ctx) {
+		String primitiveType = visitPrimitiveType(ctx.primitiveType());
+		currentType = primitiveType;
 		return String.format(
-				"%s %s : %s",
-				visitPrimitiveType(ctx.primitiveType()),
-				ctx.Identifier().toString(),
-				visitExpression(ctx.expression())
+				"%s %s",
+				primitiveType,
+				visitVariableDeclarators(ctx.variableDeclarators())
 		);
 	}
 
@@ -304,9 +362,11 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitLocalVariableDeclaration(LocalVariableDeclarationContext ctx) {
+		String primitiveType = visitPrimitiveType(ctx.primitiveType());
+		currentType = primitiveType;
 		return String.format(
 				"%s %s",
-				visitPrimitiveType(ctx.primitiveType()),
+				primitiveType,
 				visitVariableDeclarators(ctx.variableDeclarators())
 		);
 	}
@@ -324,6 +384,7 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 
 	@Override
 	public String visitVariableDeclarator(VariableDeclaratorContext ctx) {
+		variables.add(new Variable(ctx.Identifier().toString(), currentType, currentModule));
 		return String.format(
 				"%s%s",
 				ctx.Identifier().toString(),
@@ -386,10 +447,18 @@ public class GraphCustomVisitor extends GraphBaseVisitor<String> {
 	@Override
 	public String visitMathExpression(MathExpressionContext ctx) {
 		StringBuilder result = new StringBuilder();
+		String unaryExpression = visitUnaryExpression(ctx.unaryExpression(0));
 		result.append(visitUnaryExpression(ctx.unaryExpression(0)));
+		boolean isGraph = getGraphVariables().stream().anyMatch(v -> v.equals(unaryExpression));
 		for (int i = 1; i < ctx.unaryExpression().size(); i++) {
-			result.append(visitMathOperator(ctx.mathOperator(i - 1)));
-			result.append(visitUnaryExpression(ctx.unaryExpression(i)));
+			if (isGraph) {
+				result.append(visitGraphMathOperator(ctx.mathOperator(i - 1)));
+				result.append(visitUnaryExpression(ctx.unaryExpression(i)));
+				result.append(")");
+			} else {
+				result.append(visitMathOperator(ctx.mathOperator(i - 1)));
+				result.append(visitUnaryExpression(ctx.unaryExpression(i)));
+			}
 		}
 		return result.toString();
 	}

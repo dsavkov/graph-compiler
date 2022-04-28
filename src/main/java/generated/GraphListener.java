@@ -98,15 +98,15 @@ public interface GraphListener extends ParseTreeListener {
 	 */
 	void exitFunctionParameterDecls(GraphParser.FunctionParameterDeclsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link GraphParser#formalParameterDeclsRest}.
+	 * Enter a parse tree produced by {@link GraphParser#functionParameterDeclsRest}.
 	 * @param ctx the parse tree
 	 */
-	void enterFormalParameterDeclsRest(GraphParser.FormalParameterDeclsRestContext ctx);
+	void enterFunctionParameterDeclsRest(GraphParser.FunctionParameterDeclsRestContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link GraphParser#formalParameterDeclsRest}.
+	 * Exit a parse tree produced by {@link GraphParser#functionParameterDeclsRest}.
 	 * @param ctx the parse tree
 	 */
-	void exitFormalParameterDeclsRest(GraphParser.FormalParameterDeclsRestContext ctx);
+	void exitFunctionParameterDeclsRest(GraphParser.FunctionParameterDeclsRestContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GraphParser#functionBody}.
 	 * @param ctx the parse tree
@@ -227,6 +227,26 @@ public interface GraphListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitForControl(GraphParser.ForControlContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GraphParser#globalVariableDeclarationStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterGlobalVariableDeclarationStatement(GraphParser.GlobalVariableDeclarationStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GraphParser#globalVariableDeclarationStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitGlobalVariableDeclarationStatement(GraphParser.GlobalVariableDeclarationStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link GraphParser#globalVariableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterGlobalVariableDeclaration(GraphParser.GlobalVariableDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link GraphParser#globalVariableDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitGlobalVariableDeclaration(GraphParser.GlobalVariableDeclarationContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link GraphParser#localVariableDeclarationStatement}.
 	 * @param ctx the parse tree
